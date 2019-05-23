@@ -1,4 +1,4 @@
-package gov.kotkov.mikhail.Exercise2.employee;
+package gov.kotkov.mikhail.exercise2.employee;
 
 import static org.junit.Assert.*;
 import static java.math.BigDecimal.valueOf;

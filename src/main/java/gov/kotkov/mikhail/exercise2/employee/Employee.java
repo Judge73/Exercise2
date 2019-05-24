@@ -3,13 +3,10 @@ package gov.kotkov.mikhail.exercise2.employee;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-import gov.kotkov.mikhail.exercise2.util.Job;
-
 public abstract class Employee {
 
 	private final String firstName, lastName;
 	
-	private final Job job;
 	//wage for standard hours worked
 	private BigDecimal wageRate;
 	
@@ -19,9 +16,8 @@ public abstract class Employee {
 	//standard amount of hours employee has to work 
 	private static int standardWorkhours;
 	
-	public Employee(String firstName, String lastName, Job job, BigDecimal wageRate) {
+	public Employee(String firstName, String lastName, BigDecimal wageRate) {
 		validateName(firstName, lastName);
-		this.job = job;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.wageRate = wageRate.setScale(2, RoundingMode.HALF_UP);
@@ -52,6 +48,8 @@ public abstract class Employee {
 		Employee.standardWorkhours = standardWorkhours;
 	}
 	
+	public abstract BigDecimal calculateSalary();
+	
 	public double getWorkhoursPercentage() {
 		return ((double)actualWorkhours/standardWorkhours) * 100;
 	}
@@ -64,22 +62,12 @@ public abstract class Employee {
 		}
 	}
 
-	public Job getJob() {
-		return job;
-	}
-
 	public String getFirstName() {
 		return firstName;
 	}
 
 	public String getLastName() {
 		return lastName;
-	}
-
-	@Override
-	public String toString() {
-		return "Employee [firstName=" + firstName + ", lastName=" + lastName + ", job=" + job
-				+ ", wageRate=" + wageRate + ", actualWorkhours=" + actualWorkhours + "]";
 	}
 
 	public int getActualWorkhours() {
